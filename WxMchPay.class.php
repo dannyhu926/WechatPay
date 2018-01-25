@@ -37,10 +37,10 @@ class WxMchPay extends Wxpay_client_pub
      * @return string
      */
     public function createXml() {
-        $this->parameters['mch_appid'] = WxPayConf_pub::APPID;
-        $this->parameters['mchid'] = WxPayConf_pub::MCHID;
+        $this->parameters['mch_appid'] = WxPayConf_pub::$appid;
+        $this->parameters['mchid']     = WxPayConf_pub::$mchid;
         $this->parameters['nonce_str'] = $this->createNoncestr();
-        $this->parameters['sign'] = $this->getSign($this->parameters);
+        $this->parameters['sign'] = $this->getSign($this->parameters, WxPayConf_pub::$wxkey);
         return $this->arrayToXml($this->parameters);
     }
 
